@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titulo %}Vargas & Asociados{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; }
+        nav { background: #2c4a63; padding: 12px 30px; }
+        nav a { color: white; text-decoration: none; margin-right: 20px; font-weight: bold; }
+        main { max-width: 900px; margin: 25px auto; background: white; padding: 25px; border-radius: 6px; }
+        footer { text-align: center; color: #666; padding: 20px; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #e8edf2; }
+        .btn { background: #2c4a63; color: white; padding: 6px 12px; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-rojo { background: #b33a3a; }
+        .error { color: #b33a3a; font-weight: bold; }
+        .aviso { background: #fff3cd; padding: 10px; border-radius: 4px; }
+        .msg { padding: 10px; border-radius: 4px; margin-bottom: 15px; }
+        .msg.success { background: #d4edda; color: #155724; }
+        .msg.error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'casos:clientes_lista' %}">Clientes</a>
+        <a href="{% url 'casos:lista_casos' %}">Casos</a>
+    </nav>
+    <main>
+        {% if messages %}
+            {% for m in messages %}
+                <div class="msg {{ m.tags }}">{{ m }}</div>
+            {% endfor %}
+        {% endif %}
+
+        {% block contenido %}{% endblock %}
+    </main>
+    <footer>Vargas & Asociados - Estudio Jurídico</footer>
+</body>
+</html>
